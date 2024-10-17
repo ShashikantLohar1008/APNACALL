@@ -10,7 +10,7 @@ const client = axios.create({
     baseURL: "http://localhost:8000/api/v1/users" // Add protocol to baseURL
 });
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {//children ko kya kya provide kar rahe ho
     // Define state for user data
     const [userData, setUserData] = useState(null);
 
@@ -40,9 +40,10 @@ export const AuthProvider = ({ children }) => {
                 username: username,
                 password: password
             });
+            console.log(request.data);
             if (request.status === httpStatus.OK) {
                 localStorage.setItem("token", request.data.token);  // Save token in local storage
-                navigate("/dashboard");  // Navigate to a protected route after login
+                navigate("/home");  // Navigate to a protected route after login
             }
         } catch (err) {
             throw err;
